@@ -5,6 +5,7 @@ const router = express.Router();
 
 const contacts = require("../../models/contacts");
 
+// ======== розібратися чому app.route is not a function ==========
 // app
 //   .route("/")
 //   .get(async (req, res, next) => {
