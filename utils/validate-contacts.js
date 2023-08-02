@@ -13,7 +13,7 @@ const schema = Joi.object({
     .required(),
 });
 
-const validateContacts = (name, email, phone) => {
+const validateContacts = ({ name, email, phone }) => {
   const { error } = schema.validate({ name, email, phone });
 
   return error;
