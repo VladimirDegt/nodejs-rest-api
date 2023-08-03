@@ -1,7 +1,8 @@
 const contacts = require("../models/contacts");
 const HttpError = require("../utils/http-error");
-const validateContacts = require("../utils/validate-contacts");
+// const validateContacts = require("../utils/validate-contacts");
 const ctrlWrapper = require("../utils/ctrl-wrapper");
+const validateBodyRequest = require("../utils/validate-body-request");
 
 const getAll = async (req, res, next) => {
   const getContacts = await contacts.listContacts();
@@ -21,23 +22,18 @@ const getByID = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const error = validateContacts(req.body);
-  if (error) {
-    throw HttpError(400, `${error.message}`);
-  }
+  validateBodyRequest(req);
   const addContact = await contacts.addContact(req.body);
   if (addContact) {
     res.status(201).json(addContact);
     return;
   }
-  throw HttpError(400, "missing required name field");
+  // throw HttpError(400, "missing required name field");
+  throw HttpError(404, "Not found");
 };
 
 const updateById = async (req, res, next) => {
-  const error = validateContacts(req.body);
-  if (error) {
-    throw HttpError(400, `${error.message}`);
-  }
+  validateBodyRequest(req);
   const updateContact = await contacts.updateContact(
     req.params.contactId,
     req.body
