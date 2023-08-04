@@ -11,10 +11,13 @@ const validateBodyRequest = () => {
     switch (undefined) {
       case name:
         next(HttpError(400, `missing required name field`));
+        break;
       case email:
         next(HttpError(400, `missing required email field`));
+        break;
       case phone:
         next(HttpError(400, `missing required phone field`));
+        break;
     }
 
     const error = validateContacts(req.body);
