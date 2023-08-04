@@ -1,10 +1,8 @@
 const contacts = require("../models/contacts");
 const HttpError = require("../utils/http-error");
-// const validateContacts = require("../utils/validate-contacts");
 const ctrlWrapper = require("../utils/ctrl-wrapper");
-const validateBodyRequest = require("../utils/validate-body-request");
 
-const getAll = async (req, res, next) => {
+const getAll = async (req, res) => {
   const getContacts = await contacts.listContacts();
   if (getContacts) {
     res.json(getContacts);
@@ -12,7 +10,7 @@ const getAll = async (req, res, next) => {
   throw HttpError(404, "Not found");
 };
 
-const getByID = async (req, res, next) => {
+const getByID = async (req, res) => {
   const oneContact = await contacts.getContactById(req.params.contactId);
   if (oneContact) {
     res.json(oneContact);
@@ -21,19 +19,16 @@ const getByID = async (req, res, next) => {
   throw HttpError(404, "Not found");
 };
 
-const add = async (req, res, next) => {
-  validateBodyRequest(req);
+const add = async (req, res) => {
   const addContact = await contacts.addContact(req.body);
   if (addContact) {
     res.status(201).json(addContact);
     return;
   }
-  // throw HttpError(400, "missing required name field");
   throw HttpError(404, "Not found");
 };
 
-const updateById = async (req, res, next) => {
-  validateBodyRequest(req);
+const updateById = async (req, res) => {
   const updateContact = await contacts.updateContact(
     req.params.contactId,
     req.body
@@ -45,7 +40,7 @@ const updateById = async (req, res, next) => {
   throw HttpError(404, "Not found");
 };
 
-const deleteById = async (req, res, next) => {
+const deleteById = async (req, res) => {
   const deleteContact = await contacts.removeContact(req.params.contactId);
   if (deleteContact) {
     res.status(200).json({ message: "contact deleted" });
