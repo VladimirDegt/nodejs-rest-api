@@ -1,31 +1,92 @@
-## GoIT Node.js Course Template Homework
+# Connections API ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
 
-Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
-Форк створить репозиторій на вашому http://github.com
+[Volodymyr Dehtiarev - Website](https://github.com/VladimirDegt)
 
-Додайте ментора до колаборації
+---
 
-Для кожної домашньої роботи створюйте свою гілку.
+##### Servers:
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+[https://example-node-rest-api-2.onrender.com](https://example-node-rest-api-2.onrender.com)
 
-Кожна нова гілка для др повинна робитися з master
+### Contacts
 
-Після того, як ви закінчили виконувати домашнє завдання у своїй гілці, необхідно зробити пулл-реквест (PR). Потім додати ментора для рев'ю коду. Тільки після того, як ментор заапрувить PR, ви можете виконати мердж гілки з домашнім завданням у майстер.
-
-Уважно читайте коментарі ментора. Виправте зауваження та зробіть коміт у гілці з домашнім завданням. Зміни підтягнуться у PR автоматично після того, як ви відправите коміт з виправленнями на github
-Після виправлення знову додайте ментора на рев'ю коду.
-
-- При здачі домашньої роботи є посилання на PR
-- JS-код чистий та зрозумілий, для форматування використовується Prettier
-
-### Команди:
-
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+<div style="margin-bottom: 16px;">
+<button style="background-color: #61affe; font-size: 16px;
+font-weight: 700;
+width: 100px;
+padding: 8px 16px;
+margin-right: 16px;
+text-align: center;
+border: none;
+cursor: pointer;
+border-radius: 3px;
+text-shadow: 0 1px 0 rgba(0,0,0,.1);
+font-family: sans-serif;
+color: #fff;">GET</button>
+<span style=" font-size: 16px; margin-right: 16px; font-weight: 700;">"/"</span> 
+<span >Get all user contacts</span>
+</div>
+<div style="margin-bottom: 16px;">
+<button style="background-color: #19cc90; font-size: 16px;
+font-weight: 700;
+width: 100px;
+padding: 8px 16px;
+margin-right: 16px;
+text-align: center;
+border: none;
+cursor: pointer;
+border-radius: 3px;
+text-shadow: 0 1px 0 rgba(0,0,0,.1);
+font-family: sans-serif;
+color: #fff;">POST</button>
+<span style="font-size: 16px; margin-right: 16px; font-weight: 700;">"/"</span> 
+<span >Create a new contact</span>
+</div>
+<div style="margin-bottom: 16px;">
+<button style="background-color: #f93e3e; font-size: 16px;
+font-weight: 700;
+width: 100px;
+padding: 8px 16px;
+margin-right: 16px;
+text-align: center;
+border: none;
+cursor: pointer;
+border-radius: 3px;
+text-shadow: 0 1px 0 rgba(0,0,0,.1);
+font-family: sans-serif;
+color: #fff;">DELETE</button>
+<span style="font-size: 16px; font-weight: 700; margin-right: 16px;">"/:contactId"</span> 
+<span >Delete contact</span>
+</div>
+<div style="margin-bottom: 16px;">
+<button style="background-color: #50e3c2; font-size: 16px;
+font-weight: 700;
+width: 100px;
+padding: 8px 16px;
+margin-right: 16px;
+text-align: center;
+border: none;
+cursor: pointer;
+border-radius: 3px;
+text-shadow: 0 1px 0 rgba(0,0,0,.1);
+font-family: sans-serif;
+color: #fff;">PUT</button>
+<span style="font-size: 16px; font-weight: 700; margin-right: 16px;">"/:contactId"</span> 
+<span >Update contact</span>
+</div>
+<div style="margin-bottom: 16px;">
+<button style="background-color: #20e7c7; font-size: 16px;
+font-weight: 700;
+width: 100px;
+padding: 8px 16px;
+margin-right: 16px;
+text-align: center;
+border: none;
+cursor: pointer;
+border-radius: 3px;
+text-shadow: 0 1px 0 rgba(0,0,0,.1);
+font-family: sans-serif;
+color: #fff;">PATCH</button>
+<span style="font-size: 16px; font-weight: 700; margin-right: 16px;">"/:contactId/favorite"</span> 
+<span >Update field favorite</span>
+</div>
