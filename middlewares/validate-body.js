@@ -7,19 +7,11 @@ const validateBodyRequest = () => {
       throw HttpError(400, "missing fields");
     }
 
-    const { name, email, phone } = req.body;
-    switch (undefined) {
-      case name:
-        next(HttpError(400, `missing required name field`));
-      case email:
-        next(HttpError(400, `missing required email field`));
-      case phone:
-        next(HttpError(400, `missing required phone field`));
-    }
-
     const error = validateContacts(req.body);
     if (error) {
-      next(HttpError(400, `${error.message}`));
+      next(
+        HttpError(400, `missing required ${error.details[0].path[0]} field`)
+      );
     }
     next();
   };
