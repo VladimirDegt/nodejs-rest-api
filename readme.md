@@ -6,7 +6,7 @@
 
 ##### Servers:
 
-[https://example-node-rest-api-2.onrender.com](https://example-node-rest-api-2.onrender.com)
+[https://example-node-rest-api-2.onrender.com/api/contacts](https://example-node-rest-api-2.onrender.com/api/contacts)
 
 ### Contacts
 
