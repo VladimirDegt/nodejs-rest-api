@@ -10,31 +10,6 @@
 
 ### Contacts
 
-
-# Connections API ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
-
-[Volodymyr Dehtiarev - Website](https://github.com/VladimirDegt)
-
----
-
-##### Servers:
-
-[https://example-node-rest-api-2.onrender.com/api/contacts](https://example-node-rest-api-2.onrender.com/api/contacts)
-
-### Contacts
-
-# Connections API ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
-
-[Volodymyr Dehtiarev - Website](https://github.com/VladimirDegt)
-
----
-
-##### Servers:
-
-[https://example-node-rest-api-2.onrender.com/api/contacts](https://example-node-rest-api-2.onrender.com/api/contacts)
-
-### Contacts
-
 <table>
     <tr >
         <th align="center">GET</th>
