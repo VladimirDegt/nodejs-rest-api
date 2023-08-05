@@ -17,6 +17,6 @@ router
 
 router
   .route("/:contactId/favorite")
-  .patch(isValidId, validateFavoriteRequest(), ctrl.updateFavorite);
+  .patch(isValidId, validateFavoriteRequest(), ctrl.updateStatusContact);
 
 module.exports = router;

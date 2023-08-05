@@ -4,7 +4,7 @@ const validateFieldFavorite = require("../utils/update-favorite-schema");
 const validateFavoriteRequest = () => {
   const inner = (req, res, next) => {
     if (Object.keys(req.body).length === 0) {
-      throw HttpError(400, "missing fields");
+      throw HttpError(400, "missing field favorite");
     }
 
     const error = validateFieldFavorite(req.body);

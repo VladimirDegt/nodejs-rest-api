@@ -41,7 +41,7 @@ const updateById = async (req, res) => {
   throw HttpError(404, "Not found");
 };
 
-const updateFavorite = async (req, res) => {
+const updateStatusContact = async (req, res) => {
   const updateContact = await Contact.findByIdAndUpdate(
     req.params.contactId,
     req.body,
@@ -68,6 +68,6 @@ module.exports = {
   getByID: ctrlWrapper(getByID),
   add: ctrlWrapper(add),
   updateById: ctrlWrapper(updateById),
-  updateFavorite: ctrlWrapper(updateFavorite),
+  updateStatusContact: ctrlWrapper(updateStatusContact),
   deleteById: ctrlWrapper(deleteById),
 };
