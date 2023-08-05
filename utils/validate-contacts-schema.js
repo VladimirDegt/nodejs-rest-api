@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const schema = Joi.object({
-  name: Joi.string().alphanum().min(3).max(30).required(),
+  name: Joi.string().min(3).max(30).required(),
   email: Joi.string()
     .email({
       minDomainSegments: 2,
@@ -9,7 +9,7 @@ const schema = Joi.object({
     })
     .required(),
   phone: Joi.string()
-    .pattern(/^\d{6,12}$/)
+    .pattern(/^\(\d{3}\) \d{3}-\d{4}$/)
     .required(),
   favorite: Joi.boolean(),
   gender: Joi.string().valid("male", "female", "other").required(),

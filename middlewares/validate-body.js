@@ -8,10 +8,15 @@ const validateBodyRequest = () => {
     }
 
     const error = validateContacts(req.body);
+    console.log(error);
     if (error) {
-      next(
-        HttpError(400, `missing required ${error.details[0].path[0]} field`)
-      );
+      if (error.details[0].type === "any.required") {
+        next(
+          HttpError(400, `missing required ${error.details[0].path[0]} field`)
+        );
+      }
+
+      next(HttpError(400, error.message));
     }
     next();
   };
