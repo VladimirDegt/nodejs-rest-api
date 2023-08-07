@@ -1,7 +1,7 @@
-const validateFieldFavorire = require('./update-favorite-schema');
-const validateBody = require('./validate-contacts-schema');
+const validateFieldFavorite = require("./update-favorite-schema");
+const validateBody = require("./validate-contacts-schema");
 
-module.exports= {
+module.exports = {
   validateBody,
-  validateFieldFavorire
+  validateFieldFavorite,
 };

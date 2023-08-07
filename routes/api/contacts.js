@@ -4,10 +4,13 @@ const router = express.Router();
 
 const ctrl = require("../../controllers/contacts");
 const validateBodyRequest = require("../../middlewares/validate-body");
-const {validateBody, validateFieldFavorire} = require("../../schemas")
+const { validateBody, validateFieldFavorite } = require("../../schemas");
 const isValidId = require("../../middlewares/validate-id");
 
-router.route("/").get(ctrl.getAll).post(validateBodyRequest(validateBody), ctrl.add);
+router
+  .route("/")
+  .get(ctrl.getAll)
+  .post(validateBodyRequest(validateBody), ctrl.add);
 
 router
   .route("/:contactId")
@@ -17,6 +20,10 @@ router
 
 router
   .route("/:contactId/favorite")
-  .patch(isValidId, validateBodyRequest(validateFieldFavorire), ctrl.updateStatusContact);
+  .patch(
+    isValidId,
+    validateBodyRequest(validateFieldFavorite),
+    ctrl.updateStatusContact
+  );
 
 module.exports = router;
