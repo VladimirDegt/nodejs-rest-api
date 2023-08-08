@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const schema = Joi.object({
+const schemaContact = Joi.object({
   name: Joi.string().min(3).max(30).required().messages({
     "any.required": "missing field name",
     'string.min': 'name length must be at least 3 characters long',
@@ -23,20 +23,4 @@ const schema = Joi.object({
   }),
 });
 
-const validateContacts = ({
-  name,
-  email,
-  phone,
-  favorite,
-}) => {
-  const { error } = schema.validate({
-    name,
-    email,
-    phone,
-    favorite,
-  });
-
-  return error;
-};
-
-module.exports = validateContacts;
+module.exports = schemaContact;
