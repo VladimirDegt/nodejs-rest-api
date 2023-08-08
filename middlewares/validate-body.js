@@ -1,17 +1,14 @@
 const HttpError = require("../utils/http-error");
-const validateContacts = require("../utils/validate-contacts-schema");
 
-const validateBodyRequest = () => {
-  const inner = (req, res, next) => {
+const validateBodyRequest = (theme) => {
+  const inner = (req, _, next) => {
+
     if (Object.keys(req.body).length === 0) {
-      throw HttpError(400, "missing fields");
+      next(HttpError(400, "missing fields"));
     }
-
-    const error = validateContacts(req.body);
+    const error = theme(req.body);
     if (error) {
-      next(
-        HttpError(400, `missing required ${error.details[0].path[0]} field`)
-      );
+      next(HttpError(400, error.message));
     }
     next();
   };
