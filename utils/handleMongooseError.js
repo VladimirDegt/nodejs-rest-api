@@ -1,7 +1,8 @@
 const HttpError = require("./http-error");
 
 const handleMongooseError = (error, _, next) => {
-  next(HttpError(400, error.message));
+  const status = (error.name === "MongoServerError" && error.code === 11000) ? 409 : 400;
+  next(HttpError(status, error.message));
 };
 
 module.exports = handleMongooseError;
