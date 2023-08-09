@@ -3,11 +3,12 @@ const HttpError = require("../utils/http-error");
 const ctrlWrapper = require("../utils/ctrl-wrapper");
 
 const getAll = async (req, res) => {
-  const getContacts = await Contact.find();
+  const {_id: owner} = req.user;
+  const getContacts = await Contact.find({owner}, "-createdAt -updatedAt");
   if (getContacts) {
     res.json(getContacts);
   }
-  throw HttpError(404, "Not found");
+  throw HttpError(404);
 };
 
 const getByID = async (req, res) => {
@@ -16,16 +17,17 @@ const getByID = async (req, res) => {
     res.json(oneContact);
     return;
   }
-  throw HttpError(404, "Not found");
+  throw HttpError(404);
 };
 
 const add = async (req, res) => {
-  const addContact = await Contact.create(req.body);
+  const {_id: owner} = req.user;
+  const addContact = await Contact.create({...req.body, owner});
   if (addContact) {
     res.status(201).json(addContact);
     return;
   }
-  throw HttpError(404, "Not found");
+  throw HttpError(404);
 };
 
 const updateById = async (req, res) => {
@@ -38,7 +40,7 @@ const updateById = async (req, res) => {
     res.json(updateContact);
     return;
   }
-  throw HttpError(404, "Not found");
+  throw HttpError(404);
 };
 
 const updateStatusContact = async (req, res) => {
@@ -51,7 +53,7 @@ const updateStatusContact = async (req, res) => {
     res.json(updateContact);
     return;
   }
-  throw HttpError(404, "Not found");
+  throw HttpError(404);
 };
 
 const deleteById = async (req, res) => {
@@ -60,7 +62,7 @@ const deleteById = async (req, res) => {
     res.status(200).json({ message: "contact deleted" });
     return;
   }
-  throw HttpError(404, "Not found");
+  throw HttpError(404);
 };
 
 module.exports = {

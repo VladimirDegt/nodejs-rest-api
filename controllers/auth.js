@@ -22,7 +22,7 @@ const register = async (req, res) => {
     });
     return;
   }
-  throw HttpError(404, "Not found");
+  throw HttpError(404);
 };
 
 const login = async (req, res) => {
