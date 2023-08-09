@@ -4,7 +4,8 @@ const ctrlWrapper = require("../utils/ctrl-wrapper");
 
 const getAll = async (req, res) => {
   const {_id: owner} = req.user;
-  const getContacts = await Contact.find({owner}, "-createdAt -updatedAt");
+  clg
+  const getContacts = await Contact.find({owner}, "-createdAt -updatedAt").populate("owner", "email subscription");
   if (getContacts) {
     res.json(getContacts);
   }
