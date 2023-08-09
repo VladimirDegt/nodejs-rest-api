@@ -3,9 +3,13 @@ const HttpError = require("../utils/http-error");
 const ctrlWrapper = require("../utils/ctrl-wrapper");
 
 const getAll = async (req, res) => {
-  const {_id: owner} = req.user;
-  clg
-  const getContacts = await Contact.find({owner}, "-createdAt -updatedAt").populate("owner", "email subscription");
+  const { _id: owner } = req.user;
+  const { page = 1, limit = 10 } = req.query;
+  const skip = (page - 1) * limit;
+  const getContacts = await Contact.find({ owner }, "-createdAt -updatedAt", {
+    skip,
+    limit,
+  }).populate("owner", "email subscription");
   if (getContacts) {
     res.json(getContacts);
   }
@@ -22,8 +26,8 @@ const getByID = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  const {_id: owner} = req.user;
-  const addContact = await Contact.create({...req.body, owner});
+  const { _id: owner } = req.user;
+  const addContact = await Contact.create({ ...req.body, owner });
   if (addContact) {
     res.status(201).json(addContact);
     return;
