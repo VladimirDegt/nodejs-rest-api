@@ -42,7 +42,7 @@ const login = async (req, res) => {
 
   await User.findByIdAndUpdate(user._id, { token });
 
-  res.status(202).json({
+  res.json({
     token,
     user: {
       email,
@@ -61,16 +61,38 @@ const getCurrent = async (req, res) => {
 
 const logout = async (req, res) => {
   const { _id } = req.user;
+  const user = await User.findById(_id);
+  if (!user) {
+    throw HttpError(401);
+  }
   await User.findByIdAndUpdate(_id, { token: "" });
 
-  res.json({
+  res.status(204).json({
     message: "Logout success",
   });
 };
+
+const updateFieldSubscription = async (req, res) => {
+  const { subscription } = req.body;
+  const { _id } = req.user;
+  const user = await User.findById(_id);
+  if (!user) {
+    throw HttpError(401);
+  }
+
+  const updateUser = await User.findByIdAndUpdate(_id, { subscription });
+  if (updateUser) {
+    const user = await User.findById(_id);
+    res.json(user);
+    return;
+  }
+}
+
 
 module.exports = {
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   getCurrent: ctrlWrapper(getCurrent),
   logout: ctrlWrapper(logout),
+  updateFieldSubscription: ctrlWrapper(updateFieldSubscription)
 };

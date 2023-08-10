@@ -4,9 +4,9 @@ const ctrlWrapper = require("../utils/ctrl-wrapper");
 
 const getAll = async (req, res) => {
   const { _id: owner } = req.user;
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 10, favorite } = req.query;
   const skip = (page - 1) * limit;
-  const getContacts = await Contact.find({ owner }, "-createdAt -updatedAt", {
+  const getContacts = await Contact.find({ owner, ...(favorite === 'true' ? { favorite: true } : {}) }, "-createdAt -updatedAt", {
     skip,
     limit,
   }).populate("owner", "email subscription");
@@ -64,7 +64,7 @@ const updateStatusContact = async (req, res) => {
 const deleteById = async (req, res) => {
   const deleteContact = await Contact.findByIdAndRemove(req.params.contactId);
   if (deleteContact) {
-    res.status(200).json({ message: "contact deleted" });
+    res.json({ message: "contact deleted" });
     return;
   }
   throw HttpError(404);

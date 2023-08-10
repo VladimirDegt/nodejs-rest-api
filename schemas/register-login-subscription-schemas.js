@@ -12,7 +12,7 @@ const registerSchema = Joi.object({
       "string.pattern": "email not valid",
     }),
     subscription: Joi.string().valid("starter", "pro", "business").messages({
-      "any.required": "missing field subscription",
+      "any.only": "field subscription  must be one of 'starter', 'pro', 'business'",
     }),
   });
   
@@ -26,8 +26,15 @@ const registerSchema = Joi.object({
       "string.pattern": "email not valid",
     }),
   });
+
+  const fieldSubscriptionSchema = Joi.object({
+    subscription: Joi.string().valid("starter", "pro", "business").messages({
+      "any.only": "field subscription  must be one of 'starter', 'pro', 'business'",
+    }),
+  });
   
   module.exports = {
     loginSchema,
     registerSchema,
+    fieldSubscriptionSchema
   };
