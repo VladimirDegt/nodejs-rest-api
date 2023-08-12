@@ -36,3 +36,33 @@
         <td>Update field favorite</td>
     </tr>
 </table>
+
+##### Servers:
+
+[https://example-node-rest-api-2.onrender.com/users](https://example-node-rest-api-2.onrender.com/api/contacts)
+
+### Users
+
+<table>
+    <tr >
+        <th align="center">GET</th>
+        <th align="center">POST</th>
+        <th align="center">POST</th>
+        <th align="center">POST</th>
+        <th align="center">PATCH</th>
+    </tr>
+    <tr>
+        <td align="center">/current</td>
+         <td align="center">/register</td>
+        <td align="center">/login</td>
+        <td align="center">/logout</td>
+        <td align="center">/</td>
+    </tr>
+    <tr>
+        <td>Get current user</td>
+        <td>Registration</td>
+        <td>Login</td>
+        <td>Logout</td>
+        <td>Update field subscription</td>
+    </tr>
+</table>
