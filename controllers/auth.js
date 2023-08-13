@@ -2,11 +2,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const gravatar = require("gravatar");
+const Jimp = require("jimp");
 const path = require("path");
 const fs = require("fs/promises");
 const User = require("../models/user");
-const HttpError = require("../utils/http-error");
 const ctrlWrapper = require("../utils/ctrl-wrapper");
+const HttpError = require("../utils/http-error");
 
 const { SECRET_KEY } = process.env;
 const avatarsDir = path.join(__dirname, "../", "public", "avatars");
@@ -93,17 +94,27 @@ const updateFieldSubscription = async (req, res) => {
   if (updateUser) {
     const user = await User.findById(_id);
     res.json(user);
-    return;
   }
 };
 
 const updateFieldAvatar = async (req, res) => {
   const { _id } = req.user;
+  const { path: tempUpload, originalname, size } = req.file;
 
-  const { path: tempUpload, originalname } = req.file;
+  const maxSizeFile = 3 * 1024 * 1024;
+  if (size > maxSizeFile) {
+    throw HttpError(401, "File size exceeds the maximum limit (3MB).");
+  }
+
   const filename = `${_id}_${originalname}`;
   const resultUpload = path.join(avatarsDir, filename);
+
+  const file = await Jimp.read(tempUpload);
+  const avatarNewSize = file.resize(250, 250);
+  await avatarNewSize.writeAsync(tempUpload);
+
   await fs.rename(tempUpload, resultUpload);
+
   const avatarURL = path.join("avatars", filename);
 
   const user = await User.findById(_id);
@@ -114,8 +125,7 @@ const updateFieldAvatar = async (req, res) => {
   const updateUser = await User.findByIdAndUpdate(_id, { avatarURL });
   if (updateUser) {
     const user = await User.findById(_id);
-    res.json(user);
-    return;
+    res.json(user.avatarURL);
   }
 };
 
