@@ -109,11 +109,16 @@ const updateFieldAvatar = async (req, res) => {
   const filename = `${_id}_${originalname}`;
   const resultUpload = path.join(avatarsDir, filename);
 
-  const file = await Jimp.read(tempUpload);
-  const avatarNewSize = file.resize(250, 250);
-  await avatarNewSize.writeAsync(tempUpload);
-
-  await fs.rename(tempUpload, resultUpload);
+  try {
+    const file = await Jimp.read(tempUpload);
+    const avatarNewSize = file.resize(250, 250);
+    await avatarNewSize.writeAsync(tempUpload);
+    await fs.rename(tempUpload, resultUpload);
+  } catch (error) {
+    await fs.unlink(tempUpload);
+    // яку тут помилку викидати? може 500?
+    throw HttpError(404);
+  }
 
   const avatarURL = path.join("avatars", filename);
 
