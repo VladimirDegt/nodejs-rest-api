@@ -102,7 +102,6 @@ const updateFieldSubscription = async (req, res) => {
 
 const updateFieldAvatar = async (req, res) => {
   const { _id } = req.user;
-  console.log("req.file-->", req.file);
   const { path: tempUpload, originalname, size } = req.file;
 
   const maxSizeFile = 3 * 1024 * 1024;
