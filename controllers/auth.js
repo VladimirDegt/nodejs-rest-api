@@ -114,7 +114,11 @@ const updateFieldAvatar = async (req, res) => {
 
   try {
     const file = await Jimp.read(tempUpload);
-    const avatarNewSize = file.resize(250, 250);
+    const avatarNewSize = await file.cover(
+      250,
+      250,
+      Jimp.HORIZONTAL_ALIGN_CENTER
+    );
     await avatarNewSize.writeAsync(tempUpload);
     await fs.rename(tempUpload, resultUpload);
   } catch (error) {
@@ -133,7 +137,7 @@ const updateFieldAvatar = async (req, res) => {
   const updateUser = await User.findByIdAndUpdate(_id, { avatarURL });
   if (updateUser) {
     const user = await User.findById(_id);
-    res.json(user.avatarURL);
+    res.json({ avatarURL: user.avatarURL });
   }
 };
 
