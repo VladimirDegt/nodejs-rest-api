@@ -6,7 +6,7 @@
 
 ##### Servers:
 
-[https://example-node-rest-api-2.onrender.com/api/contacts](https://example-node-rest-api-2.onrender.com/api/contacts)
+[https://contacts-api-3i4o.onrender.com/api/contacts](https://contacts-api-3i4o.onrender.com/api/contacts)
 
 ### Contacts
 
@@ -39,7 +39,7 @@
 
 ##### Servers:
 
-[https://example-node-rest-api-2.onrender.com/users](https://example-node-rest-api-2.onrender.com/api/contacts)
+[https://contacts-api-3i4o.onrender.com/users](https://contacts-api-3i4o.onrender.com/api/contacts)
 
 ### Users
 
