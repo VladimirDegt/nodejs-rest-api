@@ -4,6 +4,7 @@ const {
   registerSchema,
   loginSchema,
   fieldSubscriptionSchema,
+  emailSchema,
 } = require("../../schemas");
 const ctrl = require("../../controllers/auth");
 const validateBodyRequest = require("../../middlewares/validate-body");
@@ -18,6 +19,12 @@ router.post(
   validateBodyRequest(registerSchema),
   checkUniqueEmail,
   ctrl.register
+);
+router.get("/verify/:verificationToken", ctrl.verifyEmail);
+router.post(
+  "/verify",
+  validateBodyRequest(emailSchema),
+  ctrl.resendVerifyEmail
 );
 router.post("/login", validateBodyRequest(loginSchema), ctrl.login);
 router.get("/current", authenticate, ctrl.getCurrent);
