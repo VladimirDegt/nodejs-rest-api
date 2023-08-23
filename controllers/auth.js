@@ -60,7 +60,7 @@ const verifyEmail = async (req, res) => {
     res.json({ message: "Verification successful" });
     return;
   }
-  throw HttpError(404, { message: "User not found" });
+  throw HttpError(404, "User not found" );
 };
 
 const resendVerifyEmail = async (req, res) => {
